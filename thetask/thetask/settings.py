@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'message',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -118,3 +119,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_URL = 'login:login'
+LOGIN_REDIRECT_URL = 'login:index'
+LOGOUT_REDIRECT_URL = 'index'
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = "nemolet@yandex.ru"
+EMAIL_HOST_PASSWORD = "fog13blik"
+EMAIL_USE_SSL = True
