@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import  MessageForm
 
-# @login_required
+@login_required
 def index(request):
     if request.method == 'POST':
         form = MessageForm(request.POST)

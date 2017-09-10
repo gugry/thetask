@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form name="loginform" method="post" action="">
+{% csrf_token %}
+{{form}}
+</form>
+<button> login </button>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <script type="text/javascript">
+    var _ = function($) {
+        $(function () {
+            $('button').click(function() {
+                var form = $('form')
+                $.post(form.attr('action'), form.serialize(), function (data) {
+                    location = data.redirect
+                });
+            });
+//            console.log(formData);
+//            console.log('asdf');
+
+        })
+    }(jQuery);
+
+</script>
+</body>
+</html>
