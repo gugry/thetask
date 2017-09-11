@@ -25,7 +25,7 @@ def index(request, saved=None):
             mail_count = mail.send()
             new_message.message_status =  mail_count
             new_message.save()
-            return HttpResponse(mail_count)
+            return HttpResponse("Письмо отправлено")
     else:
         form = MessageForm()
     return render(request, 'message/message.html', {'form': form})
