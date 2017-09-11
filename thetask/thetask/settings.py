@@ -122,9 +122,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
 LOGIN_URL = 'login:login'
 LOGIN_REDIRECT_URL = 'login:index'
 LOGOUT_REDIRECT_URL = 'index'
+
+ADMINS = [('Vladislav', 'gugry@mail.ru')]
+DEFAULT_FROM_EMAIL = 'nemolet@yandex.ru'
 
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
