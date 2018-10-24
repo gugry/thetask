@@ -1,0 +1,57 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Django Auth Tutorial{% endblock %}</title>
+</head>
+<body>
+
+<main id="main_block">
+    {% block login %}
+    {% endblock %}
+    {% block content %}
+    {% endblock %}
+
+</main>
+
+  <a href="https://wsvincent.com/django-user-authentication-tutorial-login-and-logout/">
+    Источник
+  </a><br/>
+    <h2>Не забываем про settings.py:</h2>
+
+    <p><b>Добавить:</b></p>
+    <p>LOGIN_REDIRECT_URL = 'home'</p>
+    <p>LOGOUT_REDIRECT_URL = 'home'</p>
+
+    <p> <b>Отредактировать:</b></p>
+    <p>TEMPLATES = [</p>
+    <p>    {</p>
+    <p>        ...
+    <p>        'DIRS': [os.path.join(BASE_DIR, 'templates')],</p>
+    <p>        ...</p>
+    <p>    },</p>
+    <p>]</p>
+
+{% block javascript %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    alert('+++++++++++++++++');
+    $("#id_password").change(function () {
+      var form = $(this).closest("form");
+      $.ajax({
+        url: 'usernamevalidate/',
+        data: form.serialize(),
+        dataType: 'json',
+        success: function (data) {
+          if (data.is_correct) {
+
+            $('#main_block').text('');
+          }
+        }
+      });
+    });
+</script>
+{% endblock %}
+</body>
+</html>

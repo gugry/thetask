@@ -5,25 +5,48 @@
     <title>Title</title>
 </head>
 <body>
+<p id = 'error_message'></p>
+
+<div id="reg_block">
 <form name="reg" method="post" action="">
     {% csrf_token %}
-    {{form}}
+    {{form.as_p}}
 {#    <input type="submit" value="Зарегистрироваться">#}
 </form>
-
+</div>
 <button> Зарегистрироваться </button>
+<p id = "message_result"></p>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% block javascript %}
+  <script>
+    $("#id_username").change(function () {
+      var form = $(this).closest("form");
+      $.ajax({
+        url: 'usernamevalidate/',
+        data: form.serialize(),
+        dataType: 'json',
+        success: function (data) {
+          if (data.is_taken) {
+            $('#error_message').text(data.error_message);
+//            alert(data.error_message);
+          }
+        }
+      });
+
+    });
+  </script>
+{% endblock %}
  <script type="text/javascript">
     var _ = function($) {
         $(function () {
             $('button').click(function() {
-                var form = $('form')
-                $.post(form.attr('action'), form.serialize(), function (data) {
-                    location = data.redirect
+                var form = $('form');
+                $.post(form.attr('action'), form.serialize(), function(data){
+                    $('#message_result').text(data["result"]);
+                    $('#reg_block').text(data["result"]);
+
                 });
             });
-//            console.log(formData);
-//            console.log('asdf');
 
         })
     }(jQuery);

@@ -32,7 +32,7 @@ class AjaxableResponseMixin(object):
             return response
 
 class AjaxLogin(AjaxableResponseMixin, LoginView):
-    template_name = 'login/login.html'
+    template_name = 'login/0login.html'
 
 
 # Create your views here.

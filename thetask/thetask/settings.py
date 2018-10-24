@@ -57,7 +57,7 @@ ROOT_URLCONF = 'thetask.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,10 +120,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 
-LOGIN_URL = 'login:login'
+# LOGIN_URL = 'login:login'
 LOGIN_REDIRECT_URL = 'login:index'
 LOGOUT_REDIRECT_URL = 'index'
 
@@ -133,5 +137,8 @@ DEFAULT_FROM_EMAIL = 'nemolet@yandex.ru'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = "nemolet@yandex.ru"
-EMAIL_HOST_PASSWORD = "fog13blik"
+EMAIL_HOST_PASSWORD = "fog13blik0"
 EMAIL_USE_SSL = True
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
